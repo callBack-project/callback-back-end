@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-//Sample Model  Read More At https://sequelize.org/master/manual/model-basics.html
-
 const User = db.define('User', {
   id: {
     type: Sequelize.UUID,

@@ -41,6 +41,7 @@ const InterViewExperience = db.define('InterviewExperience', {
   likes: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
     unique: false
   }
 }, {

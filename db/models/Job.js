@@ -51,6 +51,7 @@ const Job = db.define('Job', {
   likes: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
     unique: false
   }
 }, {

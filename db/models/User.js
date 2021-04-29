@@ -32,7 +32,7 @@ const User = db.define('User', {
     allowNull: false,
     unique: false
   },
-  jobTitle: {
+  position: {
     type: Sequelize.STRING,
     allowNull: true,
     unique: false

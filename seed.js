@@ -10,7 +10,7 @@ async function seed() {
           lastName: 'Baggins',
           userName: 'bbaggins11',
           password: 'ringbearer3018',
-          jobTitle: "Ring Bearer",
+          position: "Ring Bearer",
           company: 'Fellowship of the Ring',
           bio: "hobbit, from the shire",
           skills: "evading orcs"
@@ -20,7 +20,7 @@ async function seed() {
           lastName: 'Potter',
           userName: 'halfblood11241',
           password: 'iluvmagic',
-          jobTitle: "Wizard",
+          position: "Wizard",
           company: 'Hogwarts'
         }),,
         User.create({

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const InterViewExperience = db.define('InterviewExperience', {
+const InterviewExperience = db.define('InterviewExperience', {
   id: {
     type: Sequelize.UUID,
     allowNull: false,
@@ -48,4 +48,4 @@ const InterViewExperience = db.define('InterviewExperience', {
   tableName: 'interviews'
 });
 
-module.exports = InterViewExperience;
+module.exports = InterviewExperience;

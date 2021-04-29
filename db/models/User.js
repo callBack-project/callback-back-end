@@ -58,6 +58,8 @@ const User = db.define('User', {
     allowNull: true,
     unique: false
   }
+}, {
+  tableName: 'users'
 });
 
 module.exports = User;

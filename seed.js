@@ -1,23 +1,36 @@
 const db = require('./db');
-const Player = require('./db/models/player');
+const User = require('./db/models/User');
 
 async function seed() {
     await db.sync({ force: true });
     console.log('db synced!');
-    const seedPlayers = await Promise.all([
-        Player.create({
+    const seedUsers = await Promise.all([
+        User.create({
           firstName: 'Bilbo',
           lastName: 'Baggins',
-          jerseyNumber: 11,
+          userName: 'bbaggins11',
+          password: 'ringbearer3018',
+          position: "Ring Bearer",
+          company: 'Fellowship of the Ring',
+          bio: "hobbit, from the shire",
+          skills: "evading orcs"
         }),
-        Player.create({ firstName: 'Harry', lastName: 'Potter', jerseyNumber: 22 }),
-        Player.create({
+        User.create({
+          firstName: 'Harry',
+          lastName: 'Potter',
+          userName: 'halfblood11241',
+          password: 'iluvmagic',
+          position: "Wizard",
+          company: 'Hogwarts'
+        }),,
+        User.create({
           firstName: 'Lucifer',
           lastName: 'Morningstart',
-          jerseyNumber: 666,
+          userName: "morningstart57",
+          password: "password123"
         }),
       ]);
-    console.log(`seeded ${seedPlayers.length} users`);
+    console.log(`seeded ${seedUsers.length} users`);
     console.log(`seeded successfully`);
   }
   // We've separated the `seed` function from the `runSeed` function.

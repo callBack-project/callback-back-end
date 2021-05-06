@@ -11,6 +11,10 @@ const db = require('./db');
 
 const app = express();
 
+// BODY PARSER
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 //CORS!
 app.use(cors());
 

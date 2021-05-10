@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { JobReply } = require('../db/models');
 
+
 //GET ALL JOB REPLIES
 router.get('/', async (req, res, next) => {
   try {

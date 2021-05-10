@@ -57,6 +57,9 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const updateUser = await User.findByPk(req.params.id);
+
+    // eslint-disable-next-line no-warning-comments
+    //TODO:  Make the destroy dependent on the ternary?
     updateUser.destroy();
 
     // An if/ternary statement to handle not finding allPlayers explicitly

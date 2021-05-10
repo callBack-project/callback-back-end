@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { interViewExperience } = require('../db/models');
+const { InterviewExperience } = require('../db/models');
 
 //GET ALL INTERVIEW EXPERIENCES
 router.get('/', async (req, res, next) => {
   try {
-    const allInterviewExperiences = await interViewExperience.findAll();
+    const allInterviewExperiences = await InterviewExperience.findAll();
 
     !allInterviewExperiences
       ? res.sendStatus(404)
@@ -15,10 +15,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-//GET SINGLE INTERVIEW EXPERIENCE BASED ON ID
+//GET SINGLE INTERVIEW EXPERIENCE BY ID
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleInterviewExperiences = await interViewExperience.findOne({
+    const singleInterviewExperiences = await InterviewExperience.findOne({
       where: { id: req.params.id },
     });
 
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res, next) => {
 //CREATE A NEW INTERVIEW EXPERIENCE
 router.post('/', async (req, res, next) => {
   try {
-    const newInterviewExperience = await interViewExperience.create(req.body);
+    const newInterviewExperience = await InterviewExperience.create(req.body);
 
     !newInterviewExperience
       ? res.sendStatus(400)
@@ -43,10 +43,10 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-//UPDATE AN INTERVIEW EXPERIENCE
+//UPDATE AN INTERVIEW EXPERIENCE BY ID
 router.put('/:id', async (req, res, next) => {
   try {
-    const updateInterviewExperience = await interViewExperience.update(
+    const updateInterviewExperience = await InterviewExperience.update(
       req.body,
       {
         returning: true,
@@ -64,9 +64,13 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/id', async (req, res, next) => {
-  await interViewExperience.destroy({
-    where: { id: req.params.id },
-  });
-  res.sendStatus(204);
+//DELETE AN INTERVIEW EXPERIENCE BY ID
+router.delete('/:id', async (req, res, next) => {
+  const deleteInterviewExperience = await InterviewExperience.findByPk(
+    req.params.id
+  );
+
+  !deleteInterviewExperience
+    ? res.sendStatus(400)
+    : await deleteInterviewExperience.destroy();
 });

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Company } = require('../db/models');
 
-// Express Routes for Jobs - Read more on routing at https://expressjs.com/en/guide/routing.html
+
 router.get('/', async (req, res, next) => {
   try {
     const allCompanies = await Company.findAll();
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newCompany = await Company.create(req.body);
-
+    
     !newCompany
       ? res.status(404).send('Company Not Found')
       : res.status(200).json(newCompany);
@@ -54,7 +54,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const deleteCompany = await Job.findByPk(req.params.id);
+    const deleteCompany = await Company.findByPk(req.params.id);
     deleteCompany.destroy()
 
     !deleteCompany

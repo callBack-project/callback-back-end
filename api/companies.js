@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleCompany = await Company.findOne({where: {id: req.params.id}});
+    const singleCompany = await Company.findByPk(req.params.id);
 
     !singleCompany
       ? res.status(404).send('Company Not Found')

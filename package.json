@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "seed": "node seed.js"
+    "seed": "node eventsSeed.js"
   },
   "author": "Depak Borhara",
   "license": "ISC",

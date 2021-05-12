@@ -4,6 +4,8 @@ module.exports = router;
 
 // Mounts players api calls from api file on /api/players
 router.use('/users', require('./users'));
+router.use('/interviewExperience/interviewReplies', require('./interviewReplies'));
+
 
 
 //Anythingn not found gets a 404

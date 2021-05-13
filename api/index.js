@@ -5,6 +5,10 @@ module.exports = router;
 router.use('/users', require('./users'));
 router.use('/interviewexperiences', require('./interviewExperiences'));
 router.use('/jobreplies', require('./interviewExperiences'));
+router.use('/events', require('./events'));
+
+
+
 
 //Anythingn not found gets a 404
 router.use((req, res, next) => {

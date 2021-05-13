@@ -4,6 +4,8 @@ module.exports = router;
 
 // Mounts players api calls from api file on /api/players
 router.use('/users', require('./users'));
+router.use('/events', require('./events'));
+
 
 
 //Anythingn not found gets a 404

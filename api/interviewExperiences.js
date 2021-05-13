@@ -74,3 +74,5 @@ router.delete('/:id', async (req, res, next) => {
     ? res.sendStatus(400)
     : await deleteInterviewExperience.destroy();
 });
+
+module.exports = router;

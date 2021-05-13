@@ -1,5 +1,5 @@
 const db = require('./db');
-const { User, InterviewExperience, Company } = require('./db/models');
+const { User, InterviewExperience, Company, Event } = require('./db/models');
 
 async function seed() {
     await db.sync({ force: true });
@@ -84,11 +84,32 @@ async function seed() {
           likes: 100,
         }),
       ]);
+
+      const seedEvents = await Promise.all([
+        Event.create({
+          name: 'Algo Tuesday',
+          location: 'NYC',
+          date: new Date('May 17, 2021 03:00:00'),
+          description: 'algo practice on tuesdays',
+          link: 'meetup.com',
+          likes: 10,
+        }),
+        Event.create({
+          name: 'Tech Pannel',
+          location: 'Fullstack Academy',
+          date: new Date('May 23, 2021 05:00:00'),
+          description: 'Pannel of speakers',
+          link: 'facebook.com',
+          likes: 20,
+        }),
+      ]);
     console.log(`seeded ${seedUsers.length} Users`);
     console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);
     console.log(`seeded ${seedCompanies.length} Companies`);
+    console.log(`seeded ${seedEvents.length} Events`);
+
     console.log(`seeded successfully`);
-  
+}
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.

@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleUser = await User.findOne({where: {id: req.params.id}});
+    const singleUser = await User.findOne({ where: { id: req.params.id } });
     // An if/ternary statement to handle not finding allPlayers explicitly
     !singleUser
       ? res.status(404).send('Users Not Found')
@@ -43,7 +43,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const updateUser = await User.findByPk(req.params.id);
-    updateUser.update(req.body)
+    updateUser.update(req.body);
 
     // An if/ternary statement to handle not finding allPlayers explicitly
     !updateUser
@@ -57,7 +57,10 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const updateUser = await User.findByPk(req.params.id);
-    updateUser.destroy()
+
+    // eslint-disable-next-line no-warning-comments
+    //TODO:  Make the destroy dependent on the ternary?
+    updateUser.destroy();
 
     // An if/ternary statement to handle not finding allPlayers explicitly
     !updateUser

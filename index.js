@@ -1,9 +1,7 @@
 //NODE MODULES
 const express = require('express');
-const morgan = require('morgan');
-const compression = require('compression');
 const cors = require('cors');
-const path = require('path');
+
 
 //IMPORTS/VARIABLES
 const PORT = process.env.PORT || 8080;
@@ -12,8 +10,8 @@ const db = require('./db');
 const app = express();
 
 // BODY PARSER
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //CORS!
 app.use(cors());
@@ -23,7 +21,7 @@ app.use('/api', require('./api'));
 
 //START BACKEND SERVER FUNCTIOON
 const serverRun = () => {
-  const server = app.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`Live on port : ${PORT}`);
   });
 };

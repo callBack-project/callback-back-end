@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { JobReply } = require('../db/models');
-
+const { JobReply} = require('../db/models');
 
 //GET ALL JOB REPLIES
 router.get('/', async (req, res, next) => {
@@ -33,6 +32,12 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newJobReply = await JobReply.create(req.body);
+
+    // const job = Job.findByPk({
+    //   where: { id: '05ca5a54-4b4c-4fdf-865b-c46d2c386db3' },
+    // });
+
+    // job.setJobReplies(newJobReply);
 
     !newJobReply ? res.sendStatus(404) : res.status(201).send(newJobReply);
   } catch (error) {

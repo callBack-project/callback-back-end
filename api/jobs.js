@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { Job } = require('../db/models');
+const { Job, Company } = require('../db/models');
 
 // Express Routes for Jobs - Read more on routing at https://expressjs.com/en/guide/routing.html
 router.get('/', async (req, res, next) => {
   try {
     const allJobs = await Job.findAll();
     // An if/ternary statement to handle not finding allJobs explicitly
+
     !allJobs
       ? res.status(404).send('Jobs Not Found')
       : res.status(200).json(allJobs);
@@ -17,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleJob = await Job.findOne({where: {id: req.params.id}});
+    const singleJob = await Job.findOne({ where: { id: req.params.id } });
     // An if/ternary statement to handle not finding singleJob explicitly
     !singleJob
       ? res.status(404).send('Users Not Found')
@@ -31,6 +32,14 @@ router.post('/', async (req, res, next) => {
   try {
     const newJob = await Job.create(req.body);
 
+    const company = await Company.findOne({
+      where: {
+        name: newJob.company,
+      },
+    });
+    console.log('Company', company);
+
+    await newJob.setCompany(company);
     // An if/ternary statement to handle not finding newJob explicitly
     !newJob
       ? res.status(404).send('Users Not Found')
@@ -43,7 +52,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const updateJob = await Job.findByPk(req.params.id);
-    updateJob.update(req.body)
+    updateJob.update(req.body);
 
     // An if/ternary statement to handle not finding updateJob explicitly
     !updateJob
@@ -57,7 +66,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const deleteJob = await Job.findByPk(req.params.id);
-    deleteJob.destroy()
+    deleteJob.destroy();
 
     // An if/ternary statement to handle not finding deleteJob explicitly
     !deleteJob

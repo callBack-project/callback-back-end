@@ -39,7 +39,7 @@ router.post('/', async (req, res, next) => {
         where: {
           id: newInterviewReply.userId,
         },
-      });
+    });
 
     await newInterviewReply.setInterviewExperience(interviewExperience);
     await newInterviewReply.setUser(user);
@@ -52,7 +52,6 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-    // console.log('INTERVIEW EXTERIENCE', interviewExperience);
 
 
 router.put('/:id', async (req, res, next) => {

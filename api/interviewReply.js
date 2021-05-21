@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
 
     const interviewExperience = await InterviewExperience.findOne({
       where: {
-        name: newInterviewReply.company,
+        id: newInterviewReply.interviewId,
       },
     });
     console.log('INTERVIEW EXTERIENCE', interviewExperience);

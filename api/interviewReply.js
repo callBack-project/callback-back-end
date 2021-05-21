@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { InterviewReply, InterviewExperience } = require('../db/models');
+const { InterviewReply, InterviewExperience, User } = require('../db/models');
 
 
 router.get('/', async (req, res, next) => {
@@ -29,15 +29,21 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newInterviewReply = await InterviewReply.create(req.body);
-
+    
     const interviewExperience = await InterviewExperience.findOne({
       where: {
         id: newInterviewReply.interviewId,
       },
     });
-    console.log('INTERVIEW EXTERIENCE', interviewExperience);
+    const user = await User.findOne({
+        where: {
+          id: newInterviewReply.userId,
+        },
+      });
 
     await newInterviewReply.setInterviewExperience(interviewExperience);
+    await newInterviewReply.setUser(user);
+
     !newInterviewReply
       ? res.status(404).send('Interview Reply Not Found')
       : res.status(200).json(newInterviewReply);
@@ -45,6 +51,9 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
+    // console.log('INTERVIEW EXTERIENCE', interviewExperience);
+
 
 router.put('/:id', async (req, res, next) => {
   try {

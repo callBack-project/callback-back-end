@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Company } = require('../db/models');
 
-
 router.get('/', async (req, res, next) => {
   try {
     const allCompanies = await Company.findAll();
@@ -30,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newCompany = await Company.create(req.body);
-    
+
     !newCompany
       ? res.status(404).send('Company Not Found')
       : res.status(200).json(newCompany);
@@ -42,7 +41,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const updateCompany = await Company.findByPk(req.params.id);
-    updateCompany.update(req.body)
+    updateCompany.update(req.body);
 
     !updateCompany
       ? res.status(404).send('Company Not Found')
@@ -55,7 +54,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const deleteCompany = await Company.findByPk(req.params.id);
-    deleteCompany.destroy()
+    deleteCompany.destroy();
 
     !deleteCompany
       ? res.status(404).send('Company Not Found')

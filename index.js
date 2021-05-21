@@ -2,7 +2,6 @@
 const express = require('express');
 const cors = require('cors');
 
-
 //IMPORTS/VARIABLES
 const PORT = process.env.PORT || 8080;
 const db = require('./db');

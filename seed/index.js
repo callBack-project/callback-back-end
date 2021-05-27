@@ -16,7 +16,7 @@ async function seed() {
     await seedInterviewExperiences();
     await seedEvents()
     await seedInterviewReply()
-    await seedJobs
+    await seedJobs()
 
     //console.log(`seeded ${seedUsers} Users`);
     //console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);

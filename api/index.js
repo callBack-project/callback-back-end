@@ -6,6 +6,7 @@ router.use('/users', require('./users'));
 router.use('/jobs', require('./jobs'));
 router.use('/companies', require('./companies'));
 router.use('/interview-experiences', require('./interviewExperiences'));
+router.use('/interview-replies', require('./interviewReply'));
 router.use('/job-replies', require('./jobReplies'));
 router.use('/events', require('./events'));
 

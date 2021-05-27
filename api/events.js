@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleEvent = await Event.findOne({where: {id: req.params.id}});
+    const singleEvent = await Event.findOne({ where: { id: req.params.id } });
     // An if/ternary statement to handle not finding allPlayers explicitly
     !singleEvent
       ? res.status(404).send('Event Not Found')
@@ -43,7 +43,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const updateEvent = await Event.findByPk(req.params.id);
-    updateEvent.update(req.body)
+    updateEvent.update(req.body);
 
     // An if/ternary statement to handle not finding allPlayers explicitly
     !updateEvent
@@ -57,7 +57,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const updateEvent = await Event.findByPk(req.params.id);
-    updateEvent.destroy()
+    updateEvent.destroy();
 
     // An if/ternary statement to handle not finding allPlayers explicitly
     !updateEvent

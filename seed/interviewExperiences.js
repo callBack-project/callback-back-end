@@ -30,6 +30,6 @@ const seedInterviewExperiences = async () => {
       likes: 100,
     }),
   ]);
-}
+};
 
-  module.exports = seedInterviewExperiences;
+module.exports = seedInterviewExperiences;

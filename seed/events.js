@@ -1,7 +1,7 @@
-const { Event } = require('../db/models')
+const { Event } = require('../db/models');
 
 const seedEvents = async () => {
-   await Promise.all([
+  await Promise.all([
     Event.create({
       name: 'Algo Tuesday',
       location: 'NYC',

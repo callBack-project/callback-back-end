@@ -1,13 +1,16 @@
 const db = require('../db');
 //const { User, InterviewExperience, Company, Event } = require('../db/models');
-const seedUsers = require('./users')
+const seedUsers = require('./users');
 const seedInterviewExperiences = require('./interviewExperiences');
 const seedCompanies = require('./companies');
 const seedEvents = require('./events');
+const seedJobReplies = require('./jobReplies');
 const seedInterviewReply = require('./interviewReply')
 const seedJobs = require('./jobs')
 
 async function seed() {
+
+
     await db.sync({ force: true });
     console.log('db synced!');
 
@@ -18,12 +21,13 @@ async function seed() {
     await seedInterviewReply()
     await seedJobs()
 
-    //console.log(`seeded ${seedUsers} Users`);
-    //console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);
-    //console.log(`seeded ${seedCompanies.length} Companies`);
-    //console.log(`seeded ${seedEvents.length} Events`);
 
-    console.log(`seeded successfully`);
+  console.log(`seeded ${seedUsers} Users`);
+  //console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);
+  //console.log(`seeded ${seedCompanies.length} Companies`);
+  //console.log(`seeded ${seedEvents.length} Events`);
+
+  console.log(`seeded successfully`);
 }
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.

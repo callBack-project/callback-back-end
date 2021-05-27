@@ -5,22 +5,20 @@ const seedInterviewExperiences = require('./interviewExperiences');
 const seedCompanies = require('./companies');
 const seedEvents = require('./events');
 const seedJobReplies = require('./jobReplies');
-const seedInterviewReply = require('./interviewReply')
-const seedJobs = require('./jobs')
+const seedInterviewReply = require('./interviewReply');
+const seedJobs = require('./jobs');
 
 async function seed() {
+  await db.sync({ force: true });
+  console.log('db synced!');
 
-
-    await db.sync({ force: true });
-    console.log('db synced!');
-
-    await seedUsers();
-    await seedCompanies();
-    await seedInterviewExperiences();
-    await seedEvents()
-    await seedInterviewReply()
-    await seedJobs()
-
+  await seedUsers();
+  await seedCompanies();
+  await seedInterviewExperiences();
+  await seedEvents();
+  await seedInterviewReply();
+  await seedJobReplies();
+  await seedJobs();
 
   console.log(`seeded ${seedUsers} Users`);
   //console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);

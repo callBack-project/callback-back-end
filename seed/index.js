@@ -5,17 +5,19 @@ const seedInterviewExperiences = require('./interviewExperiences');
 const seedCompanies = require('./companies');
 const seedEvents = require('./events');
 const seedInterviewReply = require('./interviewReply')
+const seedJobs = require('./jobs')
 
 async function seed() {
     await db.sync({ force: true });
     console.log('db synced!');
-    
+
     await seedUsers();
     await seedCompanies();
     await seedInterviewExperiences();
     await seedEvents()
     await seedInterviewReply()
-    
+    await seedJobs()
+
     //console.log(`seeded ${seedUsers} Users`);
     //console.log(`seeded ${seedInterviewExperiences.length} InterviewExperiences`);
     //console.log(`seeded ${seedCompanies.length} Companies`);

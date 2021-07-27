@@ -1,3 +1,5 @@
+const { hashPassword } = require('./utils')
+
 const express = require('express');
 const router = express.Router();
 const { User } = require('../db/models');
@@ -29,13 +31,29 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body);
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+    } = req.body
+    
+    const hash = await hashPassword(password)
+    
+    const newUser = await User.create(
+      {
+        firstName,
+        lastName,
+        email,
+        password:hash
+      }
+    )
     // An if/ternary statement to handle not finding allPlayers explicitly
     !newUser
       ? res.status(404).send('Users Not Found')
       : res.status(200).json(newUser);
   } catch (error) {
-    next(error);
+    next(error)
   }
 });
 

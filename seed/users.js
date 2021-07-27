@@ -6,6 +6,7 @@ const seedUsers = async () => {
       firstName: 'Bilbo',
       lastName: 'Baggins',
       userName: 'bbaggins11',
+      email: 'bilbob@gmail.com',
       password: 'ringbearer3018',
       position: 'Ring Bearer',
       company: 'Fellowship of the Ring',
@@ -15,6 +16,7 @@ const seedUsers = async () => {
     User.create({
       firstName: 'Harry',
       lastName: 'Potter',
+      email: 'harryp@gmail.com',
       userName: 'halfblood11241',
       password: 'iluvmagic',
       position: 'Wizard',
@@ -24,6 +26,7 @@ const seedUsers = async () => {
       firstName: 'Lucifer',
       lastName: 'Morningstart',
       userName: 'morningstart57',
+      email:'luciferm@gmail.com',
       password: 'password123',
     }),
   ]);

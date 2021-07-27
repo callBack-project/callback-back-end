@@ -30,7 +30,6 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);
-
     // An if/ternary statement to handle not finding allPlayers explicitly
     !newUser
       ? res.status(404).send('Users Not Found')

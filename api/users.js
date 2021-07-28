@@ -1,8 +1,7 @@
-const { hashPassword } = require('./utils')
-
 const express = require('express');
 const router = express.Router();
 const { User } = require('../db/models');
+const { hashPassword, getByEmail, isExistingUser }  = require('./utils');
 
 // Express Routes for Players - Read more on routing at https://expressjs.com/en/guide/routing.html
 router.get('/', async (req, res, next) => {
@@ -37,17 +36,23 @@ router.post('/', async (req, res, next) => {
       email,
       password,
     } = req.body
+
+  const isExisting = await isExistingUser(email)
+
+  if (isExisting) {
+    throw Error(`A user with email ${email} already exists, please use different email.`)
+  }
     
-    const hash = await hashPassword(password)
+  const hash = await hashPassword(password)
     
-    const newUser = await User.create(
-      {
-        firstName,
-        lastName,
-        email,
-        password:hash
-      }
-    )
+  const newUser = await User.create(
+    {
+      firstName,
+      lastName,
+      email,
+      password:hash
+    }
+  )
     // An if/ternary statement to handle not finding allPlayers explicitly
     !newUser
       ? res.status(404).send('Users Not Found')

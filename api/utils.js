@@ -8,6 +8,10 @@ const utils = {
     return bcrypt.hash(password, passwordSaltRounds);
   },
 
+  comparePassword (password, hash) {
+    return bcrypt.compare(password, hash)
+  },
+
   async getByEmail(email) {
     if (typeof email !== 'string') {
       throw Error('Error in [get]: Need at least 1 query value passed, email')

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 module.exports = router;
 
-// Mounts players api calls from api file on /api/players
+router.use('/auth', require('./auth'));
 router.use('/users', require('./users'));
 router.use('/jobs', require('./jobs'));
 router.use('/companies', require('./companies'));

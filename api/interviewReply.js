@@ -2,10 +2,25 @@ const express = require('express');
 const router = express.Router();
 const { InterviewReply, InterviewExperience, User } = require('../db/models');
 
-
 router.get('/', async (req, res, next) => {
   try {
     const allInterviewReplies = await InterviewReply.findAll();
+
+    !allInterviewReplies
+      ? res.status(404).send('Interview Reply Not Found')
+      : res.status(200).json(allInterviewReplies);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:interviewExperienceId', async (req, res, next) => {
+  try {
+    const allInterviewReplies = await InterviewReply.findAll({
+      where: {
+        interviewId: req.params.interviewExperienceId
+      }
+    });
 
     !allInterviewReplies
       ? res.status(404).send('Interview Reply Not Found')

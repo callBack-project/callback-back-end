@@ -1,6 +1,7 @@
 //NODE MODULES
 const express = require('express');
 const cors = require('cors');
+const session = require("express-session")
 
 //IMPORTS/VARIABLES
 const PORT = process.env.PORT || 8080;
@@ -11,6 +12,15 @@ const app = express();
 // BODY PARSER
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+app.use(
+  session({
+    secret: "Super secret secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+)
 
 //CORS!
 app.use(cors());

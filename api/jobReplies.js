@@ -14,6 +14,21 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// GET ALL JOBS REPLIES WHERE THE ID MATCHES JOB POSTS
+router.get('/:jobsId', async (req, res, next) => {
+  try {
+    const allJobReplies = await JobReply.findAll({
+      where: {
+        jobId: req.params.jobsId
+      }
+    });
+
+    !allJobReplies ? res.sendStatus(404) : res.status(200).send(allJobReplies);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //GET SINGLE JOB REPLY BY ID
 router.get('/:id', async (req, res, next) => {
   try {

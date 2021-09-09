@@ -17,13 +17,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "Super secret secret",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
+    cookie: { secure: false, httpOnly: false }
   })
 )
 
 //CORS!
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
+}));
 
 //Mount on API
 app.use('/api', require('./api'));

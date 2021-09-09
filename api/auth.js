@@ -10,13 +10,11 @@ const userNotFound = (next) => {
 }
 
 router.get('/me', async (req, res, next) => {
-  console.log('sesh-->',req.session, 'req.bod-->', req.body)
   try {
     if (!req.session.userId) {
       userNotFound(next);
     } else {
       const user = await User.findByPk(req.session.userId);
-      console.log('req user->', )
       user ? res.json(user) : userNotFound(next);
     }
   } catch (err) {
@@ -49,7 +47,6 @@ router.put('/login', async (req, res, next) => {
       
     req.session.userId = user.id
     res.status(200).json(user);
-    
     //  else {
       
       // err.status = 401;

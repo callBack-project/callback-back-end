@@ -1,6 +1,7 @@
 //NODE MODULES
 const express = require('express');
 const cors = require('cors');
+const session = require("express-session")
 
 //IMPORTS/VARIABLES
 const PORT = process.env.PORT || 8080;
@@ -12,8 +13,22 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(
+  session({
+    secret: "Super secret secret",
+    resave: true,
+    saveUninitialized: false,
+    cookie: { secure: false, httpOnly: false }
+  })
+)
+
 //CORS!
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
+  credentials: true
+}));
 
 //Mount on API
 app.use('/api', require('./api'));
